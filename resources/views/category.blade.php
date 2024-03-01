@@ -6,7 +6,7 @@
     @foreach ($posts as $post)
         <article class="mb-2">
             <h2>
-                <a href="/posts/{{ $post['slug'] }}">
+                <a href="/posts/{{ $post['slug'] }}" class="text-decoration-none">
                     {{ $post['postTitle'] }}
                 </a>
             </h2>
@@ -15,5 +15,5 @@
         </article>
     @endforeach
 
-    <span>Back to <a href="/posts">Posts</a> or see all <a href="/categories">Categories</a></span>
+    <span>Back to <a href="/posts" class="text-decoration-none">Posts</a> or see all <a href="/categories" class="text-decoration-none">Categories</a></span>
 @endsection
