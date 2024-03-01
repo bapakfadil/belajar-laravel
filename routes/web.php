@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -22,7 +23,15 @@ Route::get('/about', function () {
 });
 
 // Halaman Blog Utama
-Route::get('/blog', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']);
 
 // Halaman Single Post
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+
+Route::get('/categories/{category::id}', function(Category $category) {
+    return view('category', [
+        'title' => $category->name,
+        'posts' => $category->posts,
+        'category' => $category->name
+    ]);
+});
