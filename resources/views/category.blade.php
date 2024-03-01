@@ -15,5 +15,5 @@
         </article>
     @endforeach
 
-    <a href="/posts">Back to posts</a>
+    <span>Back to <a href="/posts">Posts</a> or see all <a href="/categories">Categories</a></span>
 @endsection

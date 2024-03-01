@@ -7,5 +7,5 @@
         {!! $post->postBody !!}
     </article>
 
-    <a href="/posts">Back to posts</a>
+    <span>Back to <a href="/posts">Posts</a></span>
 @endsection
