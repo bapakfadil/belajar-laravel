@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('mainSection')
-    <h1 class="mb-5">Post Category : {{ $category->name }}</h1>
+    <h1 class="mb-5">Post Category : {{ $category }}</h1>
 
     @foreach ($posts as $post)
         <article class="mb-2">
@@ -14,4 +14,6 @@
             <p>{{ $post['excerpt'] }}</p>
         </article>
     @endforeach
+
+    <a href="/posts">Back to posts</a>
 @endsection
