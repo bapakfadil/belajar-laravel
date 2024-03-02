@@ -10,7 +10,7 @@
                     {{ $post['postTitle'] }}
                 </a>
             </h2>
-            <span>Oleh : {{ $post->user->name }} {{ $post['author'] }}</span>
+            <span>By : {{ $post->author->name }}</span>
             <p>{{ $post['excerpt'] }}</p>
             <a href="/posts/{{ $post->slug }}" class="text-decoration-none">Read more..</a>
         </article>
