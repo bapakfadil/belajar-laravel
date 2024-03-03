@@ -32,13 +32,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
-            'name' => 'UI/UX',
-            'slug' => 'ui-ux'
+            'name' => 'Design',
+            'slug' => 'design'
         ]);
 
         Category::create([
-            'name' => 'Jaringan',
-            'slug' => 'jaringan'
+            'name' => 'Network',
+            'slug' => 'network'
         ]);
 
         Post::factory(10)->create();
