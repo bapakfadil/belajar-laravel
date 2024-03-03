@@ -26,6 +26,9 @@
             @foreach ($posts->skip(1) as $post)
             <div class="col-md-4 mb-3">
                 <div class="card">
+                    <div class="position-absolute px-3 py-2" style="background-color: rgba(0,0,0, 0.7)">
+                        <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none text-white">{{ $post->category->name }}</a>
+                    </div>
                     <a href="/posts/{{ $post->slug }}"><img src="https://source.unsplash.com/600x200/?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}"></a>
                     <div class="card-body">
                         <h5 class="card-title">
