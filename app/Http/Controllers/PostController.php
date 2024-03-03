@@ -15,7 +15,7 @@ class PostController extends Controller
         ]);
     }
 
-    // Menggunaka Route Model Binding
+    // Menggunakan Route Model Binding
     public function show(Post $post){
         return view('post', [
             'title' => $post->postTitle,
