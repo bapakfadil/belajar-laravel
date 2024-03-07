@@ -14,7 +14,8 @@ class PostController extends Controller
 
         // create search handling in Blog page
         if(request('search')) {
-            $posts->where('postTitle', 'like', '%' . request('search') . '%');
+            $posts->where('postTitle', 'like', '%' . request('search') . '%')
+                  ->orWhere('postBody', 'like', '%' . request('search') . '%');
         }
 
         return view('posts', [
