@@ -15,10 +15,19 @@ class Post extends Model
 
     public function scopeFilterPost($query, array $filters){
         // create search post by title and text on body handling in Blog page
+        /*
         if(isset($filters['search']) ? $filters['search'] : false) {
             return $query->where('postTitle', 'like', '%' . $filters['search'] . '%')
                          ->orWhere('postBody', 'like', '%' . $filters['search'] . '%');
         }
+        */
+
+
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where('postTitle', 'like', '%' . $search . '%')
+                        ->orWhere('postBody', 'like', '%' . $search . '%')
+                         ->orWhere('excerpt', 'like', '%' . $search . '%');
+        });
     }
 
     public function category() {
