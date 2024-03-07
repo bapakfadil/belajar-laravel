@@ -11,8 +11,15 @@ class Post extends Model
 
     // protected $fillable = ['postTitle', 'author', 'excerpt', 'postBody'];
     protected $guarded = ['id'];
-
     protected $with = ['category', 'author'];
+
+    public function scopeFilterPost($query){
+        // create search post by title and text on body handling in Blog page
+        if(request('search')) {
+            return $query->where('postTitle', 'like', '%' . request('search') . '%')
+                         ->orWhere('postBody', 'like', '%' . request('search') . '%');
+        }
+    }
 
     public function category() {
         return $this->belongsTo(Category::class);
