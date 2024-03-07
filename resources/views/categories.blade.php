@@ -11,5 +11,12 @@
         </ul>
     @endforeach
 
-    <span>Back to <a href="/posts">Posts</a> or see all <a href="/categories">Categories</a></span>
+    <div class="row category-footer pt-3 pb-5">
+        <div class="col">
+            <a href="/posts" class="text-decoration-none btn btn-sm btn-outline-dark">Back to Posts</a>
+        </div>
+        <div class="col text-end">
+            <a href="/" class="text-decoration-none btn btn-sm btn-outline-dark">Return Home</a>
+        </div>
+    </div>
 @endsection

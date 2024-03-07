@@ -1,20 +1,62 @@
 @extends('layout.main')
 
 @section('mainSection')
-    <h1 class="mb-5">Post Category : {{ $category }}</h1>
 
-    @foreach ($posts as $post)
-        <article class="mb-3 pb-3 border-bottom">
-            <h2>
-                <a href="/posts/{{ $post['slug'] }}" class="text-decoration-none">
-                    {{ $post['postTitle'] }}
-                </a>
-            </h2>
-            <span>By : {{ $post->author->name }}</span>
-            <p>{{ $post['excerpt'] }}</p>
-            <a href="/posts/{{ $post->slug }}" class="text-decoration-none">Read more..</a>
-        </article>
-    @endforeach
+    <h2 class="mb-3">Category : {{ $title }}</h2>
+    <br>
 
-    <span>Back to <a href="/posts" class="text-decoration-none pb-3 mb-3">Posts</a> or see all <a href="/categories" class="text-decoration-none">Categories</a></span>
+    @if ($posts->count())
+        <div class="card mb-5">
+            <a href="/posts/{{ $posts[0]->slug }}"><img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}"></a>
+            <div class="card-body text-center">
+                <a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark"><h3 class="card-title">{{ $posts[0]->postTitle }}</h3></a>
+                <small>
+                    By <a href="/author/{{ $posts[0]->author->username }}" class="text-decoration-none text-dark">{{ $posts[0]->author->name }}</a>
+                    in <a href="/categories/{{ $posts[0]->category->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->category->name }}</a> {{ $posts[0]->created_at->diffForHumans() }}
+                </small>
+                <p class="card-text mt-2">{{ $posts[0]->excerpt }}</p>
+                <a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none btn btn-sm btn-secondary bg-dark">Read More</a>
+            </div>
+        </div>
+    @else
+        <p class="text-center fs-4">No post found.</p>
+    @endif
+
+    <div class="container">
+        <div class="row">
+            @foreach ($posts->skip(1) as $post)
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="position-absolute px-3 py-2" style="background-color: rgba(0,0,0, 0.7)">
+                        <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none text-white">{{ $post->category->name }}</a>
+                    </div>
+                    <a href="/posts/{{ $post->slug }}"><img src="https://source.unsplash.com/600x200/?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/posts/{{ $post['slug'] }}" class="text-decoration-none text-dark">
+                                {{ $post['postTitle'] }}
+                            </a>
+                        </h5>
+                        <small>
+                            By <a href="/author/{{ $post->author->username }}" class="text-decoration-none text-dark">{{ $post->author->name }}</a> {{ $post->created_at->diffForHumans() }}
+                        </small>
+                        <p class="card-text">
+                            {{ $post['excerpt'] }}
+                        </p>
+                        <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-sm btn-dark">Read More</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="row category-footer pt-3 pb-5">
+        <div class="col">
+            <a href="/posts" class="text-decoration-none btn btn-sm btn-outline-dark">Back to Posts</a>
+        </div>
+        <div class="col text-end">
+            <a href="/categories" class="text-decoration-none btn btn-sm btn-outline-dark">See all Categories</a>
+        </div>
+    </div>
+
 @endsection
