@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index() {
+        // dd(request('search')); // to get search parameter using die dump
+
+        $posts = Post::latest();
+
+        // create search handling in Blog page
+        if(request('search')) {
+            $posts->where('postTitle', 'like', '%' . request('search') . '%');
+        }
+
         return view('posts', [
             'title' => 'All Posts',
             'active' => 'posts',
-            //'posts' => Post::all()
-            'posts' => Post::latest()->get()
+            'posts' => $posts->get()
         ]);
     }
 
