@@ -17,7 +17,7 @@ class PostController extends Controller
                 latest() to get the latest post,
                 filterPost() to filter posts by search request
             */
-            'posts' => Post::latest()->filterPost()->get()
+            'posts' => Post::latest()->filterPost(request(['search']))->get()
         ]);
     }
 

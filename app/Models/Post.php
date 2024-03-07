@@ -13,11 +13,11 @@ class Post extends Model
     protected $guarded = ['id'];
     protected $with = ['category', 'author'];
 
-    public function scopeFilterPost($query){
+    public function scopeFilterPost($query, array $filters){
         // create search post by title and text on body handling in Blog page
-        if(request('search')) {
-            return $query->where('postTitle', 'like', '%' . request('search') . '%')
-                         ->orWhere('postBody', 'like', '%' . request('search') . '%');
+        if(isset($filters['search']) ? $filters['search'] : false) {
+            return $query->where('postTitle', 'like', '%' . $filters['search'] . '%')
+                         ->orWhere('postBody', 'like', '%' . $filters['search'] . '%');
         }
     }
 
