@@ -67,6 +67,11 @@
         <p class="text-center fs-4">No post found.</p>
     @endif
 
+    {{-- Add Pagination --}}
+    <div class="d-flex justify-content-center">
+        {{ $posts->links() }}
+    </div>
+
     {{-- @foreach ($posts->skip(1) as $post)
         <article class="mb-3 pb-3 border-bottom">
             <h3>
