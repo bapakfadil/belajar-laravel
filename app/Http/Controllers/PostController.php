@@ -35,7 +35,11 @@ class PostController extends Controller
             // Using get() to displays all posts
             // 'posts' => Post::latest()->filterPost(request(['search', 'category', 'author']))->get()
 
-            // Use paginate() to display a certain amount of post | '7' to display only 7 latest posts
+            /*
+                Use paginate() to display a certain amount of post,
+                '7' to display only 7 latest posts | withQueryString,
+                to add last search query in pagination.
+            */
             'posts' => Post::latest()->filterPost(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
         ]);
     }

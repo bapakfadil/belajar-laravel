@@ -1,10 +1,11 @@
 <?php
 
-use App\Models\Post;
-use App\Models\User;
+// use App\Models\Post; // unused, reasons below
+// use App\Models\User; // unused, reasons below
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
 
 // Halaman Utama
 Route::get('/', function () {
@@ -38,6 +39,8 @@ Route::get('/categories', function() {
         'categories' => Category::all()
     ]);
 });
+
+Route::get('/login', [LoginController::class, 'index']);
 
 // unused, replaced by Category Query at Post Model
 /*
