@@ -39,18 +39,24 @@ Route::get('/categories', function() {
     ]);
 });
 
+// unused, replaced by Category Query at Post Model
+/*
 Route::get('/categories/{category:slug}', function(Category $category) {
     return view('posts', [
         'title' => "$category->name",
-        'active' => 'category',
+        'active' => 'categories',
         'posts' => $category->posts->load('author', 'category')
     ]);
 });
+*/
 
+// unused, replaced by Author Query at Post Model
+/*
 Route::get('/author/{author:username}', function(User $author) {
     return view('posts', [
         'title' => "Author : $author->name",
-        'active' => 'author',
+        'active' => 'posts',
         'posts' => $author->posts->load('category', 'author')
     ]);
 });
+*/

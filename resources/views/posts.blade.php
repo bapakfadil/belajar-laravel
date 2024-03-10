@@ -9,6 +9,9 @@
                 @if (request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
+                @if (request('author'))
+                    <input type="hidden" name="author" value="{{ request('author') }}">
+                @endif
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request('search') }}">
                     <button class="btn btn-outline-dark" type="submit" id="">Search</button>
@@ -23,8 +26,8 @@
             <div class="card-body text-center">
                 <a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark"><h3 class="card-title">{{ $posts[0]->postTitle }}</h3></a>
                 <small>
-                    By <a href="/author/{{ $posts[0]->author->username }}" class="text-decoration-none text-dark">{{ $posts[0]->author->name }}</a>
-                    in <a href="/posts?category={{ $posts[0]->category->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->category->name }}</a> {{ $posts[0]->created_at->diffForHumans() }}
+                    By <a href="/posts?author={{ $posts[0]->author->username }}" class="text-decoration-none text-dark"><strong>{{ $posts[0]->author->name }}</strong></a>
+                    in <a href="/posts?category={{ $posts[0]->category->slug }}" class="text-decoration-none text-dark"><strong>{{ $posts[0]->category->name }}</strong></a> {{ $posts[0]->created_at->diffForHumans() }}
                 </small>
                 <p class="card-text mt-2">{{ $posts[0]->excerpt }}</p>
                 <a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none btn btn-sm btn-secondary bg-dark">Read More</a>
@@ -47,7 +50,7 @@
                                 </a>
                             </h5>
                             <small>
-                                By <a href="/author/{{ $post->author->username }}" class="text-decoration-none text-dark"><strong>{{ $post->author->name }}</strong></a> {{ $post->created_at->diffForHumans() }}
+                                By <a href="/posts?author={{ $post->author->username }}" class="text-decoration-none text-dark"><strong>{{ $post->author->name }}</strong></a> {{ $post->created_at->diffForHumans() }}
                             </small>
                             <p class="card-text">
                                 {{ $post['excerpt'] }}

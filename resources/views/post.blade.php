@@ -12,7 +12,7 @@
                 </div>
                 <div class="row post-author mb-3">
                     <div class="col">
-                        <p class="mb-2 fs-6">By <a href="/author/{{ $post->author->username }}" class="text-decoration-none text-dark">{{ $post->author->name }}</a> in <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none text-dark">{{ $post->category->name }}</a></p>
+                        <p class="mb-2 fs-6">By <a href="/posts?author={{ $post->author->username }}" class="text-decoration-none text-dark"><strong>{{ $post->author->name }}</strong></a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none text-dark"><strong>{{ $post->category->name }}</strong></a></p>
                     </div>
                     <div class="col">
                         <p class=" fs-6 text-end">{{ $post->created_at->diffForHumans() }}</p>
