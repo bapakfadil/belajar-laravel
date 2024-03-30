@@ -27,7 +27,6 @@ class PostController extends Controller
 
         return view('posts', [
             'title' => 'All Posts' . $title,
-            'active' => 'posts',
             /*
                 latest() to get the latest post,
                 filterPost() to filter posts by search request
@@ -48,7 +47,6 @@ class PostController extends Controller
     public function show(Post $post){
         return view('post', [
             'title' => $post->postTitle,
-            'active' => 'post',
             'post' => $post
         ]);
     }

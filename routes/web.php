@@ -2,17 +2,19 @@
 
 // use App\Models\Post; // unused, reasons below
 // use App\Models\User; // unused, reasons below
+
 use App\Models\Category;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardPostController;
 
 // Halaman Utama
 Route::get('/', function () {
     return view('home', [
-        'title' => 'Home',
-        'active' => 'home',
+        'title' => 'Home'
     ]);
 });
 
@@ -20,7 +22,6 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about', [
         'title' => 'About',
-        'active' => 'about',
         'name' => 'Tanjiro',
         'email' => 'tanjiro@mail.com',
         'image' => 'tanjiro.jpg'
@@ -36,7 +37,6 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/categories', function() {
     return view('categories', [
         'title' => 'All Categories',
-        'active' => 'categories',
         'categories' => Category::all()
     ]);
 });
@@ -51,6 +51,8 @@ Route::post('/register', [RegisterController::class, 'store'])->middleware('gues
 Route::get('/dashboard', function(){
     return view('dashboard.index');
 })->middleware('auth');
+
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 // unused, replaced by Category Query at Post Model
 /*
