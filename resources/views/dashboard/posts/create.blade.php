@@ -19,12 +19,13 @@
             </div>
             <div class="mb-3">
               <label for="slug" class="form-label">Post Slug</label>
+              {{-- Disabling Slug Input because there is an automated slug creation --}}
               <input
                 type="text"
                 class="form-control"
                 id="slug"
                 name="slug"
-                >
+                disabled readonly>
             </div>
             <button type="submit" class="btn btn-primary">Create Post</button>
         </form>
