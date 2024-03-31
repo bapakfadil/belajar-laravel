@@ -54,6 +54,7 @@ Route::get('/dashboard', function(){
 
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
+
 // unused, replaced by Category Query at Post Model
 /*
 Route::get('/categories/{category:slug}', function(Category $category) {

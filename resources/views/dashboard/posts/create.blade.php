@@ -30,4 +30,14 @@
         </form>
     </div>
 
+    <script>
+        const postTitle = document.querySelector("#postTitle");
+        const slug = document.querySelector("#slug");
+
+        postTitle.addEventListener("keyup", function() {
+            let preslug = postTitle.value;
+            preslug = preslug.replace(/ /g,"-");
+            slug.value = preslug.toLowerCase();
+        });
+    </script>
 @endsection
